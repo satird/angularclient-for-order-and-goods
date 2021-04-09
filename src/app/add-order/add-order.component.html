@@ -1,0 +1,58 @@
+<div class="card my-5">
+  <div class="card-body">
+    <h3 class="card-title text-center py-3">Create Order</h3>
+    <div class="row justify-content-center">
+      <div class="col"></div>
+      <div class="col-md-auto" >
+        <div [hidden]="submitted" style="width: 400px;">
+          <form [formGroup]="ordersaveform" #saveorder (ngSubmit)="saveOrder(saveOrder)">
+            <div class="form-group">
+              <label for="client">Client</label>
+              <input id="client" type="text" class="form-control"  formControlName="client" data-toggle="tooltip"
+                     data-placement="right" title="Enter Client" >
+              <div class="alert alert-danger" *ngIf = "(OrderClient.touched) && (OrderClient.invalid)"
+                   style="margin-top: 5px;">
+                <span *ngIf="OrderClient.errors.required">Client is Required</span>
+                <span *ngIf = "OrderClient.errors.minlength">
+                        MinLength Error
+                    </span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="address">Address</label>
+              <input id="address" type="text" class="form-control" formControlName="address"
+                     data-toggle="tooltip" data-placement="right" title="Enter Address">
+              <div class="alert alert-danger" *ngIf = "(OrderAddress.touched) && (OrderAddress.invalid)"
+                   style="margin-top: 5px;">
+                <span *ngIf="OrderAddress.errors.required">Address is Required</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="date">Date</label>
+              <input id="date" type="date" class="form-control" formControlName="creationDate"
+                     data-placement="right" title="Enter Date">
+              <div class="alert alert-danger" *ngIf = "(OrderDate.touched) && (OrderDate.invalid)"
+                   style="margin-top: 5px;">
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-success">Submit</button>
+          </form>
+        </div>
+      </div>
+      <div class="col"></div>
+    </div>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-md-auto">
+        <div [hidden]="!submitted">
+          <h4>Order Added SuccessFully!</h4>
+          <button (click)="addOrderForm()" class='btn btn-primary'>Add More Order</button>
+        </div>
+      </div>
+      <div class="col"></div>
+    </div>
+  </div>
+</div>
+

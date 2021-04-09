@@ -1,0 +1,49 @@
+<div class="card my-5">
+  <div class="card-body">
+    <h3 class="card-title text-center py-3">Create Goods</h3>
+    <div class="row justify-content-center">
+      <div class="col"></div>
+      <div class="col-md-auto" >
+        <div [hidden]="submitted" style="width: 400px;">
+          <form [formGroup]="goodssaveform" #savegoods (ngSubmit)="saveGoods(saveGoods)">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input id="name" type="text" class="form-control"  formControlName="name" data-toggle="tooltip"
+                     data-placement="right" title="Enter Name" >
+              <div class="alert alert-danger" *ngIf = "(GoodsName.touched) && (GoodsName.invalid)"
+                   style="margin-top: 5px;">
+                <span *ngIf="GoodsName.errors.required">Name is Required</span>
+                <span *ngIf = "GoodsName.errors.minlength">
+                        MinLength Error
+                    </span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="price">Price</label>
+              <input id="price" type="number" class="form-control" formControlName="price"
+                     data-toggle="tooltip" data-placement="right" title="Enter Price">
+              <div class="alert alert-danger" *ngIf = "(GoodsPrice.touched) && (GoodsPrice.invalid)"
+                   style="margin-top: 5px;">
+                <span *ngIf="GoodsPrice.errors.required">Price is Required</span>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-success">Submit</button>
+          </form>
+        </div>
+      </div>
+      <div class="col"></div>
+    </div>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-md-auto">
+        <div [hidden]="!submitted">
+          <h4>Order Added SuccessFully!</h4>
+          <button (click)="addGoodsForm()" class='btn btn-primary'>Add More Goods</button>
+        </div>
+      </div>
+      <div class="col"></div>
+    </div>
+  </div>
+</div>
